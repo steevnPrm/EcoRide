@@ -1,26 +1,112 @@
 @import "tailwindcss";
 
+/* =========================================================
+   🌿 Design Tokens — Ecoride
+   Source unique de vérité (CSS Variables)
+   ========================================================= */
+
 :root {
+  /* ---- Couleurs principales ---- */
+  /* Green Ecoride */
+  --green-ecoride-500: #51ba83;
+  --green-ecoride-400: #59cd90;
+  --green-ecoride-300: #68d29a;
+  --green-ecoride-200: #76d6a3;
+  --green-ecoride-100: #d7f5e5;
+
+  /* Blue Ecoride */
+  --blue-ecoride-500: #2b6b69;
+  --blue-ecoride-400: #3c8d8a;
+  --blue-ecoride-300: #449e9b;
+  --blue-ecoride-200: #48a7a3;
+  --blue-ecoride-100: #4cafab;
+
+  /* Brown Ecoride */
+  --brown-ecoride-500: #433737;
+  --brown-ecoride-400: #4a3d3d;
+  --brown-ecoride-300: #6c5a49;
+  --brown-ecoride-200: #79695a;
+  --brown-ecoride-100: #d6cec5;
+
+  /* Gray Ecoride */
+  --gray-ecoride-1000: #120309;
+  --gray-ecoride-900: #211c1e;
+  --gray-ecoride-800: #262323;
+  --gray-ecoride-700: #383535;
+  --gray-ecoride-600: #666666;
+  --gray-ecoride-500: #747474;
+  --gray-ecoride-400: #818181;
+  --gray-ecoride-300: #7a7a7a;
+  --gray-ecoride-200: #969696;
+  --gray-ecoride-100: #e6e6e6;
+
+  /* ---- Typographie ---- */
+  --font-body: Roboto, system-ui, sans-serif;
+  --font-mono: Consolas, monospace;
+
+  /* ---- Espacements ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  /* ---- Couleurs globales par défaut ---- */
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: var(--gray-ecoride-900);
 }
+
+/* =========================================================
+   🧩 Liaison au thème Tailwind (v4 ou “@theme inline”)
+   ========================================================= */
 
 @theme inline {
+  /* couleurs globales */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  /* familles de polices */
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+
+  /* palette Ecoride exposée à Tailwind (préfixée) */
+  --color-ecoride-green-100: var(--green-ecoride-100);
+  --color-ecoride-green-200: var(--green-ecoride-200);
+  --color-ecoride-green-300: var(--green-ecoride-300);
+  --color-ecoride-green-400: var(--green-ecoride-400);
+  --color-ecoride-green-500: var(--green-ecoride-500);
+
+  --color-ecoride-blue-100: var(--blue-ecoride-100);
+  --color-ecoride-blue-200: var(--blue-ecoride-200);
+  --color-ecoride-blue-300: var(--blue-ecoride-300);
+  --color-ecoride-blue-400: var(--blue-ecoride-400);
+  --color-ecoride-blue-500: var(--blue-ecoride-500);
+
+  --color-ecoride-brown-100: var(--brown-ecoride-100);
+  --color-ecoride-brown-200: var(--brown-ecoride-200);
+  --color-ecoride-brown-300: var(--brown-ecoride-300);
+  --color-ecoride-brown-400: var(--brown-ecoride-400);
+  --color-ecoride-brown-500: var(--brown-ecoride-500);
+
+  --color-ecoride-gray-100: var(--gray-ecoride-100);
+  --color-ecoride-gray-200: var(--gray-ecoride-200);
+  --color-ecoride-gray-300: var(--gray-ecoride-300);
+  --color-ecoride-gray-400: var(--gray-ecoride-400);
+  --color-ecoride-gray-500: var(--gray-ecoride-500);
+  --color-ecoride-gray-600: var(--gray-ecoride-600);
+  --color-ecoride-gray-700: var(--gray-ecoride-700);
+  --color-ecoride-gray-800: var(--gray-ecoride-800);
+  --color-ecoride-gray-900: var(--gray-ecoride-900);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* =========================================================
+   🌱 Styles globaux
+   ========================================================= */
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  margin: 0;
 }
