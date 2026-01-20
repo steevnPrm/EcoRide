@@ -8,6 +8,7 @@ import {
   errorText,
   skeletonInput,
 } from "../token/ui.token";
+import DisconnectButton from "./disconnectButton";
 
 export default function ProfilCard() {
   const { data, errors, loading } = useGetProfil();
@@ -48,6 +49,9 @@ export default function ProfilCard() {
             </div>
           </div>
         )}
+      </div>
+      <div>
+        < DisconnectButton />
       </div>
     </div>
   );
