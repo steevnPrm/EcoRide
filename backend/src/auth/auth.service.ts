@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { AuthUseCase } from './auth-use-case/auth-use-case';
-import { RegisterCredentialDTO } from './domain/auth-dto';
+import { LoginCredentialDTO, RegisterCredentialDTO } from './domain/auth-dto';
 
 @Injectable()
 export class AuthService {
@@ -9,7 +9,17 @@ export class AuthService {
     ){}
 
     async createUser(dto : RegisterCredentialDTO){
-        const newUser = await this.usecase.register(dto)
-        return newUser 
+        const response = await this.usecase.register(dto)
+        return response 
+    }
+
+    async connectUser(dto : LoginCredentialDTO){
+        const response = await this.usecase.login(dto)
+        return response
+    }
+
+    async getProfile(email : string){
+        const response = await this.usecase.getProfile(email)
+        return response
     }
 }

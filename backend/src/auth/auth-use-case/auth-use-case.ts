@@ -1,15 +1,27 @@
-import { Injectable, BadRequestException, ConflictException } from '@nestjs/common';
+import { Injectable, BadRequestException, ConflictException, NotFoundException, ForbiddenException } from '@nestjs/common';
 import { IAuthService } from '../domain/auth-service-interface';
 import { RegisterCredentialDTO, LoginCredentialDTO } from '../domain/auth-dto';
 import { PasswordManagementService } from 'src/common/password-management/password-management.service';
 import { AuthRepository } from '../auth-repository/auth-repository';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthUseCase implements IAuthService {
   constructor(
     private readonly passwordManager: PasswordManagementService,
-    private readonly repository: AuthRepository
+    private readonly repository: AuthRepository,
+    private readonly jwtService : JwtService
   ) {}
+  async getProfile(email: string) {
+    const user = await this.repository.findUserByEmail(email)
+    const profilData = {
+      firstname : user?.firstname,
+      lastname : user?.lastname ,
+      username : user?.username
+    }
+
+    return profilData
+  }
 
   async register(dto: RegisterCredentialDTO) {
     // Validation des champs
@@ -43,7 +55,14 @@ export class AuthUseCase implements IAuthService {
     };
   }
 
-  login(dto: LoginCredentialDTO) {
-    throw new BadRequestException('Méthode non implémentée pour le moment.');
+  async login(dto: LoginCredentialDTO) {
+    const dbUser = await this.repository.findUserByEmail(dto.email)
+    if(!dbUser){throw new NotFoundException('Utilisateur introuvable')}
+    const isValid = await this.passwordManager.compare(dto.password , dbUser.password )
+    if(!isValid){throw new ForbiddenException('Mot de passe incorrect')}
+    const payload = {id : dbUser.id, email : dbUser.email}
+    const token = await this.jwtService.signAsync(payload)
+    console.log(`token du service : ${token}`)
+    return token
   }
 }
