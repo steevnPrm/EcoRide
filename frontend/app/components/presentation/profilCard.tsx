@@ -18,7 +18,7 @@ export default function ProfilCard() {
       <div className={formCard}>
         <h2 className={sectionTitle}>Mon profil</h2>
 
-        {/* Loading skeleton */}
+        {/* Loading */}
         {loading && (
           <div className="flex flex-col gap-4 mt-4">
             <div className={skeletonInput}></div>
@@ -32,26 +32,30 @@ export default function ProfilCard() {
 
         {/* Profil */}
         {!loading && !errors && (
-          <div className="flex flex-col gap-4 mt-4">
-            <div className="flex flex-col">
-              <label className="text-xs text-gray-500">Prénom</label>
-              <input className={userInput} value={data.firstname} readOnly />
+          <>
+            <div className="flex flex-col gap-4 mt-4">
+              <div>
+                <label className="text-xs text-gray-500">Prénom</label>
+                <input className={userInput} value={data.firstname} readOnly />
+              </div>
+
+              <div>
+                <label className="text-xs text-gray-500">Nom</label>
+                <input className={userInput} value={data.lastname} readOnly />
+              </div>
+
+              <div>
+                <label className="text-xs text-gray-500">Nom d’utilisateur</label>
+                <input className={userInput} value={data.username} readOnly />
+              </div>
             </div>
 
-            <div className="flex flex-col">
-              <label className="text-xs text-gray-500">Nom</label>
-              <input className={userInput} value={data.lastname} readOnly />
+            {/* Actions */}
+            <div className="mt-6 flex justify-end">
+              <DisconnectButton />
             </div>
-
-            <div className="flex flex-col">
-              <label className="text-xs text-gray-500">Nom d’utilisateur</label>
-              <input className={userInput} value={data.username} readOnly />
-            </div>
-          </div>
+          </>
         )}
-      </div>
-      <div>
-        < DisconnectButton />
       </div>
     </div>
   );

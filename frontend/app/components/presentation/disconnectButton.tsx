@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { secondaryButton } from "../token/ui.token";
 
 export default function DisconnectButton() {
   const router = useRouter();
@@ -23,5 +24,5 @@ export default function DisconnectButton() {
     }
   }
 
-  return <button onClick={handleClick}>Déconnexion</button>;
+  return <button className={secondaryButton} onClick={handleClick}>Déconnexion</button>;
 }
