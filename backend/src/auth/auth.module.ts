@@ -7,6 +7,7 @@ import { PrismaModule } from 'src/common/prisma/prisma.module';
 import { CommonModule } from 'src/common/common.module';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { AuthGuard } from './auth.guard';
 
 @Module({
   imports: [
@@ -17,11 +18,12 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
         secret: configService.get<string>('JWT_SECRET'),
-        signOptions: { expiresIn: '30s' },
+        signOptions: { expiresIn: '1h' },
       }),
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, AuthRepository, AuthUseCase],
+  providers: [AuthService, AuthRepository, AuthUseCase, AuthGuard],
+  exports: [AuthGuard, AuthRepository, JwtModule], 
 })
 export class AuthModule {}

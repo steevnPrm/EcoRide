@@ -62,7 +62,6 @@ export class AuthUseCase implements IAuthService {
     if(!isValid){throw new ForbiddenException('Mot de passe incorrect')}
     const payload = {id : dbUser.id, email : dbUser.email}
     const token = await this.jwtService.signAsync(payload)
-    console.log(`token du service : ${token}`)
     return token
   }
 }

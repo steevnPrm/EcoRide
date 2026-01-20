@@ -14,11 +14,11 @@ export class AuthGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest<Request & { user?: any }>();
-    console.log(request.cookies.jwt)
-
+    console.log('Récéption du token en cours...')
     // 1️⃣ lire le token depuis le cookie
     let token = request.cookies?.jwt;
-    console.log("token recu dans le auth Guard" , token)
+    console.log('Token Reçue dans le Guard  : ' , token)
+
     // 2️⃣ si absent, lire depuis le header Authorization
     if (!token) {
       const authHeader = request.headers['authorization'];

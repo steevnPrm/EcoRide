@@ -21,7 +21,6 @@ export class AuthController {
     @Res({ passthrough: true }) res: Response,
   ) {
     const token = await this.authService.connectUser(dto);
-    console.log(`token controller  : ${token}`)
 
     res.cookie('jwt', token, {
       httpOnly: true,
