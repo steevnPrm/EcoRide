@@ -8,6 +8,6 @@ export async function POST() {
 
   return NextResponse.json(
     { success: true, message: "Déconnexion effectuée" },
-    { status: 200 }
+    { status: 200 },
   );
 }

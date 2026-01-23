@@ -7,13 +7,12 @@ export async function GET(req: Request) {
     const cookie = (await cookies()).get("jwt")?.value;
 
     if (!cookie) {
-      return new Response(
-        JSON.stringify({ error: "Token manquant" }),
-        { status: 401 }
-      );
+      return new Response(JSON.stringify({ error: "Token manquant" }), {
+        status: 401,
+      });
     }
 
-    console.log("cookie à envoyer : " , cookie )
+    console.log("cookie à envoyer : ", cookie);
     // Appel au backend NestJS en envoyant le cookie
     const response = await fetch("http://localhost:3001/auth/profile", {
       method: "GET",
@@ -26,7 +25,7 @@ export async function GET(req: Request) {
     if (!response.ok) {
       return new Response(
         JSON.stringify({ error: data.message || `Erreur ${response.status}` }),
-        { status: response.status }
+        { status: response.status },
       );
     }
 
@@ -34,7 +33,7 @@ export async function GET(req: Request) {
   } catch (err: any) {
     return new Response(
       JSON.stringify({ error: err.message || "Erreur serveur" }),
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

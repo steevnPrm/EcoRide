@@ -52,7 +52,6 @@ export default function useLoginForm() {
 
       // Redirection métier
       router.push("/profile");
-
     } catch (err) {
       if (err instanceof Error) {
         setError(err.message);

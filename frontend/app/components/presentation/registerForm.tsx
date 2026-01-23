@@ -1,18 +1,25 @@
 "use client";
 
 import useRegisterForm from "../hooks/useRegisterForm";
-import { errorText, formCard, formLabel, formLayout, pageTitle, primaryButton, successText, userInput } from "../token/ui.token";
+import {
+  errorText,
+  formCard,
+  formLabel,
+  formLayout,
+  pageTitle,
+  primaryButton,
+  successText,
+  userInput,
+} from "../token/ui.token";
 
 export default function RegisterForm() {
   const { data, handleChange, handleSubmit, loading, error, success } =
     useRegisterForm();
 
   return (
-    <div className= {formLayout} >
-      <div className= {formCard} >
-        <h1 className= {pageTitle}>
-          Créer un compte
-        </h1>
+    <div className={formLayout}>
+      <div className={formCard}>
+        <h1 className={pageTitle}>Créer un compte</h1>
 
         <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           <div>
@@ -102,22 +109,12 @@ export default function RegisterForm() {
             />
           </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className= {primaryButton} 
-          >
+          <button type="submit" disabled={loading} className={primaryButton}>
             {loading ? "Inscription..." : "S’inscrire"}
           </button>
 
-          {error && (
-            <p className= {errorText} >{error}</p>
-          )}
-          {success && (
-            <p className= {successText} >
-              Inscription réussie 🎉
-            </p>
-          )}
+          {error && <p className={errorText}>{error}</p>}
+          {success && <p className={successText}>Inscription réussie 🎉</p>}
         </form>
       </div>
     </div>

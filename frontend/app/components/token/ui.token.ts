@@ -7,8 +7,7 @@ export const userInput =
 /* =========================
  * LABELS
  * ========================= */
-export const formLabel =
-  "text-sm font-medium text-ecoride-gray-700";
+export const formLabel = "text-sm font-medium text-ecoride-gray-700";
 
 /* =========================
  * BUTTONS
@@ -22,8 +21,7 @@ export const secondaryButton =
 /* =========================
  * FORM CONTAINERS
  * ========================= */
-export const formCard =
-  "w-full max-w-md rounded-3xl bg-white p-8 shadow-lg";
+export const formCard = "w-full max-w-md rounded-3xl bg-white p-8 shadow-lg";
 
 export const formLayout =
   "flex min-h-screen items-center justify-center bg-ecoride-gray-100 px-4";
@@ -31,26 +29,21 @@ export const formLayout =
 /* =========================
  * FEEDBACK STATES
  * ========================= */
-export const errorText =
-  "text-sm text-ecoride-brown-500";
+export const errorText = "text-sm text-ecoride-brown-500";
 
-export const successText =
-  "text-sm text-ecoride-green-500";
+export const successText = "text-sm text-ecoride-green-500";
 
 /* =========================
  * TITLES
  * ========================= */
-export const pageTitle =
-  "text-2xl font-bold text-ecoride-gray-900 text-center";
+export const pageTitle = "text-2xl font-bold text-ecoride-gray-900 text-center";
 
-export const sectionTitle =
-  "text-lg font-semibold text-ecoride-gray-800";
+export const sectionTitle = "text-lg font-semibold text-ecoride-gray-800";
 
 /* =========================
  * HELPERS
  * ========================= */
-export const helperText =
-  "text-xs text-ecoride-gray-600";
+export const helperText = "text-xs text-ecoride-gray-600";
 
 /* =========================
  * LOADING / SKELETON

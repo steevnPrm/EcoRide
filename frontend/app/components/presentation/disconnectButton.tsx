@@ -24,5 +24,9 @@ export default function DisconnectButton() {
     }
   }
 
-  return <button className={secondaryButton} onClick={handleClick}>Déconnexion</button>;
+  return (
+    <button className={secondaryButton} onClick={handleClick}>
+      Déconnexion
+    </button>
+  );
 }

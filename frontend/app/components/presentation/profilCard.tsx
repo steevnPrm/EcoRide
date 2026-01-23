@@ -45,7 +45,9 @@ export default function ProfilCard() {
               </div>
 
               <div>
-                <label className="text-xs text-gray-500">Nom d’utilisateur</label>
+                <label className="text-xs text-gray-500">
+                  Nom d’utilisateur
+                </label>
                 <input className={userInput} value={data.username} readOnly />
               </div>
             </div>
