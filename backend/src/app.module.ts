@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { PasswordManagementService } from './common/password-management/password-management.service';
 import { CommonModule } from './common/common.module';
 import { RidesModule } from './rides/rides.module';
+import { AdminModule } from './admin/admin.module';
 
 @Module({
   imports: [ConfigModule.forRoot(
@@ -15,7 +16,7 @@ import { RidesModule } from './rides/rides.module';
       isGlobal : true,
       envFilePath : ".env"
     }
-  ), PrismaModule, AuthModule, CommonModule, RidesModule],
+  ), PrismaModule, AuthModule, CommonModule, RidesModule, AdminModule],
   controllers: [AppController],
   providers: [AppService, PrismaService, PasswordManagementService],
 })

@@ -60,7 +60,7 @@ export class AuthUseCase implements IAuthService {
     if(!dbUser){throw new NotFoundException('Utilisateur introuvable')}
     const isValid = await this.passwordManager.compare(dto.password , dbUser.password )
     if(!isValid){throw new ForbiddenException('Mot de passe incorrect')}
-    const payload = {id : dbUser.id, email : dbUser.email}
+    const payload = {id : dbUser.id, email : dbUser.email, isAdmin : dbUser.isAdmin}
     const token = await this.jwtService.signAsync(payload)
     return token
   }

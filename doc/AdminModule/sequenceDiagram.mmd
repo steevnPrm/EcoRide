@@ -1,0 +1,24 @@
+sequenceDiagram
+    actor Admin
+    participant "Page Auth/login" as LoginPage
+    participant "Page admin/dashboard" as DashboardPage
+    participant Guard
+    participant AdminController
+    participant AdminService
+    participant AdminRepository
+
+    %% Authentification
+    Admin ->> LoginPage : req : AuthCredential
+    LoginPage -->> Admin : res : Token
+
+    %% Accès dashboard
+    DashboardPage ->> Guard : req : token.isAdmin
+    Guard -->> DashboardPage : res : true/false
+
+    %% Si accès autorisé
+    Guard ->> AdminController : accès autorisé
+    AdminController ->> AdminService : req : getUsers & getMessages
+    AdminService ->> AdminRepository : req : users | messages
+    AdminRepository -->> AdminService : res : users | messages
+    AdminService -->> AdminController : res : users | messages
+    AdminController -->> DashboardPage : res : users | messages

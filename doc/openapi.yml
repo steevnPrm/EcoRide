@@ -1,0 +1,79 @@
+openapi: 3.0.3
+
+info:
+  title: AdminModule
+  version: 1.0.0
+  description: API permettant l'accès au module administrateur
+
+servers:
+  - url: http://localhost:3000
+    description: Serveur local de développement
+
+paths:
+  /admin/dashboard:
+    get:
+      operationId: getAdminDashboard
+      summary: Accès au dashboard administrateur
+      description:
+        Endpoint réservé aux utilisateurs authentifiés possédant le rôle ADMIN.
+        L'authentification repose sur un JWT stocké dans un cookie sécurisé.
+      tags:
+        - Admin
+      security:
+        - AdminCookieAuth: []
+      responses:
+        '200':
+          description: Accès autorisé au dashboard administrateur
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminDashboardResponse'
+        '401':
+          description: Utilisateur non authentifié
+        '403':
+          description: Utilisateur authentifié mais non administrateur
+
+components:
+  securitySchemes:
+    AdminCookieAuth:
+      type: apiKey
+      in: cookie
+      name: jwt
+      description: JWT stocké dans un cookie permettant l'accès aux routes admin
+
+  schemas:
+    AdminDashboardResponse:
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdminMessage'
+        users:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdminUser'
+
+    AdminMessage:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "msg_123"
+        content:
+          type: string
+          example: "Message système"
+        createdAt:
+          type: string
+          format: date-time
+
+    AdminUser:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "user_456"
+        email:
+          type: string
+          format: email
+          example: "admin@mail.com"
